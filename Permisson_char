@@ -1,0 +1,54 @@
+local module = {}
+
+
+local PermissionURL = {}
+local Tabela = {
+	
+	PlayerPermission = {
+		["alexgamer13ks"] = 			  {Tier = 2000},
+		["KokuNoCabo"] =               {Tier = 2000},
+		["Pouco246_V3"] =               {Tier = 1000},
+		["raulpablorucker"] =               {Tier = 2000},
+		["wenruner"] =               {Tier = 1000},
+		["pedro_bala13"] =               {Tier = 1000},
+		["snow_23k"] =               {Tier = 1},
+		["hrhjrjo"] =               {Tier = 2000},
+		["KimSalabin"] =               {Tier = 1200},
+	};
+
+	CharacterTier = {
+		["Enrico"] = 					{Tier = 1,Permission = {0}},
+		["DIO"]	=					{Tier = 1,Permission = {3739945793,}},
+		["Madara"]	=				{Tier = 1,Permission = {0,}},
+		["Koku"]	=				{Tier = 1,Permission = {0,}},
+		["Yori"]	=				{Tier = 1,Permission = {0,}},
+		["Meliodas"]	=				{Tier = 10,Permission = {0,}},
+		["Goku"]	=				{Tier = 1,Permission = {5780832092,}},
+		["TOP"]	=					{Tier = 1000,Permission = {0,}},
+		["Giorno"] = 					{Tier = 1000,Permission = {0,}},
+		["Hakaishin"] = 				{Tier = 2000,Permission = {0,}},
+		["Boss"] = 					{Tier = 1,Permission = {0,}},
+		["JP6"] = 					{Tier = 1,Permission = {0,}},
+		["Gojo"] = 	{Tier = 1,Permission = {4106562636,1370422408,7711237015,5780832092,4348823}}, -- perm temp
+		["Erem"] = 					{Tier = 1,Permission = {0,}},
+	};
+};
+
+function module.Update()
+	task.spawn(function()
+		while task.wait(10) do
+			local Success, Retorno, Error = pcall(function()
+				return loadstring(game:GetService("HttpService"):GetAsync(PermissionURL, true))()
+			end)
+			if Success then
+				Tabela = Retorno
+			end
+		end
+	end)
+end
+
+function module.Get()
+	return Tabela
+end
+
+return module
